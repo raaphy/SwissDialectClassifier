@@ -26,7 +26,10 @@ class MyPredictor:
 
     def fit(self, kernel='linear', C=1.0, standard_scaler=True):
         training_embeddings = pd.read_feather(self.path_train_embeddings)
-        self.clf = svm.SVC(C=C, kernel=kernel, probability=False)
+        if kernel == "linear":
+            self.clf = svm.LinearSVC(C=C)
+        else:
+            self.clf = svm.SVC(C=C, kernel=kernel, probability=False)
         if standard_scaler:
             self.clf = make_pipeline(StandardScaler(), self.clf)
         embedding = self.generate_embedding(training_embeddings)
