@@ -11,3 +11,5 @@ lavd==0.2.1
 transformers==3.0.2
 sentencepiece==0.1.91
 scikit-learn
+pandas
+pyarrow
