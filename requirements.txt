@@ -13,3 +13,4 @@ sentencepiece==0.1.91
 scikit-learn
 pandas
 pyarrow
+tokenizers
