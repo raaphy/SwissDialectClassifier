@@ -10,8 +10,11 @@ class GdiLoader:
             with open(self.path, "r") as f:
                 for line in f:
                     line = line.strip()
-                    if line and line[1] in self.labels:
+                    try:
                         text, label = line.split("\t")
+                    except:
+                        raise Exception("Error: ", line)
+                    if label in self.labels:
                         yield text, label
                     else:
                         raise Exception("Error: ", line)
