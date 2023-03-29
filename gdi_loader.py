@@ -25,18 +25,10 @@ class GdiLoader:
         return np.array(row.values)
 
     def create_dataframe(self, which_type="train") -> pd.DataFrame:
-        if which_type == "train" or which_type == "dev":
-            df = pd.read_csv(self.path + which_type + ".txt", delimiter='\t', names=["text", "label"])
-            df_audio = pd.read_csv(self.path + which_type + ".vec", sep=' ', header=None)
-            df["audio"] = df_audio.apply(self.row_to_np_array, axis=1)
-            df.to_feather(self.path + which_type + ".feather")
-        elif which_type == "test":
-            text_df = pd.read_csv(self.path+ "test.txt", delimiter='\t', names=["text"])
-            labels_df = pd.read_csv(self.path + ".labels", delimiter='\t', names=["label"])
-            df = pd.concat([text_df, labels_df], axis=1)
-            df.to_feather(self.path+  "test.feather")
-        else:
-            raise Exception("Error: ", which_type)
+        df = pd.read_csv(self.path + which_type + ".txt", delimiter='\t', names=["text", "label"])
+        df_audio = pd.read_csv(self.path + which_type + ".vec", sep=' ', header=None)
+        df["audio"] = df_audio.apply(self.row_to_np_array, axis=1)
+        df.to_feather(self.path + which_type + ".feather")
         return df
 
     #def create_dataframe_test(self) -> pd.DataFrame:

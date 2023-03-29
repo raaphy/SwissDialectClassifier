@@ -8,9 +8,11 @@ halo==0.0.29
 tqdm==4.48.0
 subword-nmt==0.3.7
 lavd==0.2.1
-transformers==3.0.2
+transformers~=4.27.3
 sentencepiece==0.1.91
-scikit-learn
-pandas
+scikit-learn~=1.2.1
+pandas~=1.5.3
 pyarrow
-tokenizers
+tokenizers~=0.13.2
+
+numpy
