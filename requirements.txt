@@ -14,5 +14,5 @@ scikit-learn~=1.2.1
 pandas~=1.5.3
 pyarrow
 tokenizers~=0.13.2
-
+matplotlib
 numpy
