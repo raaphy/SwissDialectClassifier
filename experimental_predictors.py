@@ -1,10 +1,9 @@
-from abc import ABC
-
 import numpy as np
 import pandas as pd
+
+from abc import ABC
 from sklearn import svm
 from sklearn.naive_bayes import GaussianNB
-from sklearn.neighbors import KNeighborsClassifier
 
 from byte_pair_tfidf_vectorizer import BytePairTfidfVectorizer
 
@@ -16,8 +15,6 @@ def join_embeddings(series_list: list[pd.Series],
     if normalize_each_vector:
         arrays = [a / np.linalg.norm(a, axis=1, keepdims=True) for a in arrays]
     con = np.concatenate(arrays, axis=1)
-    #    if normalize_each_vector:
-    #        con = con / np.linalg.norm(con, axis=1, keepdims=True)
     return con
 
 
@@ -86,22 +83,23 @@ def _sort_probabilities(feature_names: np.ndarray, prediction_sentence_embedding
                                                                       label_ids[3]]]
     return prediction_sentence_embedding
 
+
 class SwissDialectPredictorSeperateGaussians(SwissDialectPredictorInterface):
     def __init__(self,
-                 classifiers={"audio": GaussianNB(),
-                              "sentene_embedding": GaussianNB(),
-                              "byte_pair_tfidf": svm.LinearSVC()},
+                 audio_classifier=GaussianNB(),
+                 sentence_embedding_classifier=GaussianNB(),
+                 tfidf_classifier=svm.LinearSVC(),
                  enable_audio=True,
                  enable_sentance_embedding=True,
                  enable_byte_pair_tfidf=True,
                  normalize_each_vector=False,
                  last_classifier=GaussianNB(),
-                 audio_weight = 0.5,
+                 audio_weight=0.5,
                  ):
         self.byte_pair_tfidf_vectorizer = BytePairTfidfVectorizer(vocab_size=1000, min_frequency=2)
-        self.tfidf_classifier = classifiers["byte_pair_tfidf"]
-        self.audio_classifier = classifiers["audio"]
-        self.sentence_embedding_classifications = classifiers["sentene_embedding"]
+        self.tfidf_classifier = tfidf_classifier
+        self.audio_classifier = audio_classifier
+        self.sentence_embedding_classifications = sentence_embedding_classifier
         self.enable_audio = enable_audio
         self.enable_sentance_embedding = enable_sentance_embedding
         self.enable_byte_pair_tfidf = enable_byte_pair_tfidf
