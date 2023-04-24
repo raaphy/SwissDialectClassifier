@@ -6,8 +6,12 @@ Backround information on this project can be found in the report.pdf
 ## Setup
 To run HelvetiaDial one shound create a Python 3.10 environment (We only tested the code on Python 3.10).
 Afterward the requirements in requirements.txt should be installed using pip. 
-The git repo contains the embeddings. If one wants to create them one needs to:
+The git repo contains the embeddings. 
+To recreate the final results one can simply run helvetia_dial.py.
+To see the experiments open the jupyter notebook 'experiments.ipynb'.
+If one wants to recreate the embeddings one needs to:
 - Dowload the GDI-2019 dataset from https://drive.switch.ch/index.php/s/DZycFA9DPC8FgD9 
+- install additional requirements from requirements_embeddings.txt
 - In create_embeddings.ipynb the path to the dataset needs to be set to the unzipped folder.
 - Run the jupyter notebook 'create_embeddings.ipynb'. Takes approximately 1 hour.
 ## Files Overview
@@ -26,4 +30,5 @@ Following table gives an overview of the files in this repository.
 | README.md | This file                                       |
 | more_experiments.ipynb | More experiments                                |
 | report.pdf | Report on the project                           |
-| requirements.txt | Requirements to run the code                    |
+| requirements.txt | Requirements to run prediction                  |
+| requirements_embeddings.txt | Requirements to create BERT embeddings          |
