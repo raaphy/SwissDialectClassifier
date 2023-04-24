@@ -1,3 +1,5 @@
+import os
+
 from matplotlib import pyplot as plt
 from sklearn.metrics import f1_score
 
@@ -29,4 +31,6 @@ def plot_validation_curve(x_train, y_train, x_val, y_val, classifier_class, para
     ax.legend()
     plt.tight_layout()
     # save figure
+    if not os.path.exists("graphics"):
+        os.mkdir("graphics")
     fig.savefig(f"graphics/validation_curve_{title}_big.pdf", dpi=300)
