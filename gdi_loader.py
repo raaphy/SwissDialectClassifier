@@ -30,7 +30,6 @@ class GdiLoader:
         df = pd.read_csv(self.path + which_type + ".txt", delimiter='\t', names=["text", "label"])
         df_audio = pd.read_csv(self.path + which_type + ".vec", sep=' ', header=None)
         df["audio"] = df_audio.apply(self._row_to_np_array, axis=1)
-        df.to_feather(self.path + which_type + ".feather")
         return df
 
 

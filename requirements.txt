@@ -1,6 +1,5 @@
 protobuf==3.20.0
 pytorch
-
 torch==1.6.0
 typing==3.6.6
 halo==0.0.29

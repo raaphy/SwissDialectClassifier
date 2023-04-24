@@ -65,9 +65,9 @@ if __name__ == "__main__":
     from sklearn.metrics import f1_score, confusion_matrix, ConfusionMatrixDisplay
 
     # Load the data
-    train_df = pd.read_feather("train_embedding_bert_swiss_lm.feather")
-    dev_df = pd.read_feather("dev_embedding_bert_swiss_lm.feather")
-    test_df = pd.read_feather("test_embedding_bert_swiss_lm.feather")
+    train_df = pd.read_feather("data/train_embedding_bert_swiss_lm.feather")
+    dev_df = pd.read_feather("data/dev_embedding_bert_swiss_lm.feather")
+    test_df = pd.read_feather("data/test_embedding_bert_swiss_lm.feather")
 
     # Train the model on the training data
     predictor_trained_on_train = HelvetiaDial()
